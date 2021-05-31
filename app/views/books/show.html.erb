@@ -1,0 +1,25 @@
+<div class="post-body">
+  <%= attachment_image_tag @book, :profile_image_id %>
+  <p><%= attachment_image_tag post_image.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %><%= attachment_image_tag post_image.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+  <p>Title：<%= @book.title %></p>
+  <p>Body：<%= @book.body %></p>
+  <p><%= @user.name %></p>
+  <% if @book.user == current_user %>
+    <%= link_to "destroy", book_path(@book), method: :delete %>
+  <% end %>
+  
+  <%= flash[:notice] %>
+
+<% if @user.errors.any? %>
+  <div class="alert alert-warning">
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+
+        <li><%= message %></li>
+        <li>error</li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+</div>
